@@ -328,9 +328,15 @@ puts ""
 
 roles = Role.all
 
+#roles_begins = Role.where({"movie_id" => begins["id"]})
+#maybe break this up and do fors for each movie??
+
+
 for part in roles
-title = part["movie_id"]
-actor = part["actor_id"]
+title_connect = part["movie_id"]
+title = Movie.find_by({"id"=>title_connect})["title"]
+actor_connect = part["actor_id"]
+actor = Actor.find_by({"id"=>actor_connect})["name"]
 character = part["character_name"]
 puts "#{title} #{actor} #{character}"
 end
